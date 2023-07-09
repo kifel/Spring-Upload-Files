@@ -28,7 +28,7 @@ O projeto está desenvolvido utilizando as seguintes tecnologias:
 
 ## ⌨ Como executar o projeto
 
-Para executar o projeto, é necessário ter a versão 17 do Java instalada em seu sistema e o baco de dados PostgreSQL.
+Para executar o projeto, é necessário ter a versão 17 do Java instalada em seu sistema e o banco de dados PostgreSQL.
 
 1. Certifique-se de ter a versão 17 do Java instalada em seu sistema. Você pode verificar a versão atual do Java digitando o seguinte comando no terminal:
 
