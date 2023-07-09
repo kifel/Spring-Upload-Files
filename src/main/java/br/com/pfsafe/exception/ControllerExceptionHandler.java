@@ -3,6 +3,7 @@ package br.com.pfsafe.exception;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -23,8 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
+  @Value("${spring.servlet.multipart.max-file-size}")
+  private String maxFileSize;
+
   private static final String UNPROCESSABLE_ENTITY_MESSAGE = "Unprocessable Entity";
-  
+
   @ExceptionHandler({ MethodArgumentTypeMismatchException.class,
       FileException.class })
   public ResponseEntity<ApiError> handleExceptions(RuntimeException ex) {
@@ -37,7 +41,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(MaxUploadSizeExceededException.class)
   public ResponseEntity<ApiError> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
     ApiError apiError = new ApiError(HttpStatus.UNPROCESSABLE_ENTITY, "File size exceeds the maximum allowed.",
-        "Maximum upload size exceeded");
+        "Maximum upload size exceeded. Maximum allowed file size: " + maxFileSize);
     System.out.println("apiError: " + apiError);
     return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
         .contentType(MediaType.APPLICATION_JSON)
