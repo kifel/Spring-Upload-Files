@@ -8,7 +8,7 @@ Projeto de uma api para uplodad download e visualizar arquivos, construido com S
 
 ## 📋 Índice
 
-- [Sobre](#Projeto-final-FrontEnd-Essencial)
+- [Sobre](#upload-file-spring-boot)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Como executar o projeto](#-como-executar-o-projeto)
 - [Construído com](#%EF%B8%8F-construído-com)
@@ -28,7 +28,7 @@ O projeto está desenvolvido utilizando as seguintes tecnologias:
 
 ## ⌨ Como executar o projeto
 
-Para executar o projeto, é necessário ter a versão 17 do Java instalada em seu sistema e o baco de dados PostgreSQL.
+Para executar o projeto, é necessário ter a versão 17 do Java instalada em seu sistema e o banco de dados PostgreSQL.
 
 1. Certifique-se de ter a versão 17 do Java instalada em seu sistema. Você pode verificar a versão atual do Java digitando o seguinte comando no terminal:
 
@@ -51,7 +51,7 @@ git clone https://github.com/kifel/Spring-Upload-Files.git
 
 4. Crie o banco de dados para utilziar no projeto.
 
-5. Configure o arquivo .env alterando a URL da API, conecção com o banco e senha do PostgreSQL, segue o padrao do .env
+5. Crie e configure o arquivo .env alterando a URL da API, conecção com o banco e senha do PostgreSQL, segue o padrao do .env
 ```m
 DB_URL=jdbc:postgresql://localhost:5432/nome_do_banco_de_dados_criado
 DB_USERNAME=usuario_do_banco
@@ -68,7 +68,7 @@ API_URL=http://localhost:8080
 - POST
  - http://localhost:8080/api/file/upload
 
-O post é feito com Multipart, sendo enviado em file, exemplo:
+O post é feito com Multipart, exemplo:
 ![imagem de exemplo](https://cdn.discordapp.com/attachments/971904895043125258/1127653025905905708/image.png)
 
 ---
