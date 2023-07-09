@@ -2,6 +2,8 @@ package br.com.pfsafe.service;
 
 import java.io.IOException;
 import java.sql.Blob;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +85,61 @@ public class FileService {
         MediaType mediaType = MediaType.parseMediaType(file.getType());
 
         return new DownloadFileResult(file.getOriginalName(), fileData, mediaType);
+    }
+
+    /**
+     * The function `viewFile` retrieves a file from the file repository, checks if
+     * the file extension is
+     * allowed, converts the file data to byte array, and returns a
+     * `DownloadFileResult` object containing
+     * the file name, data, and media type.
+     * 
+     * @param fileName The `fileName` parameter is a string that represents the
+     *                 unique name of the file
+     *                 that needs to be viewed.
+     * @return The method is returning a DownloadFileResult object.
+     */
+    @Transactional
+    public DownloadFileResult viewFile(String fileName) throws Exception {
+        File file = fileRepository.findByUniqueName(fileName)
+                .orElseThrow(() -> new FileException("Could not find file name: " + fileName));
+
+        String fileExtension = getFileExtension(file.getOriginalName());
+        List<String> allowedExtensions = Arrays.asList(
+                "jpg", "jpeg", "png", "gif", // Imagens
+                "txt", "md", // Documentos de texto
+                "pdf", // Documentos em formato PDF
+                "mp3", "wav", "ogg", // Arquivos de áudio
+                "mp4" // Arquivos de vídeo
+        );
+
+        if (!allowedExtensions.contains(fileExtension)) {
+            String fileDownloadUrl = backendBaseUrl + "/api/file/download/" + file.getUniqueName();
+            throw new FileException(
+                    "Visualização de arquivo não permitida! Faça o Download do arquivo: " + fileDownloadUrl);
+        }
+
+        byte[] fileData = FileUtils.blobToByteArray(file.getFile());
+        MediaType mediaType = MediaType.parseMediaType(file.getType());
+
+        return new DownloadFileResult(file.getOriginalName(), fileData, mediaType);
+    }
+
+    /**
+     * The getFileExtension function returns the file extension of a given file
+     * name.
+     * 
+     * @param fileName The `fileName` parameter is a string that represents the name
+     *                 of a file, including
+     *                 its extension.
+     * @return The method is returning the file extension of the given fileName.
+     */
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf(".");
+        if (dotIndex != -1 && dotIndex < fileName.length() - 1) {
+            return fileName.substring(dotIndex + 1).toLowerCase();
+        }
+        return "";
     }
 
     /**

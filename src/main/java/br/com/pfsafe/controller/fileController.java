@@ -25,7 +25,7 @@ import br.com.pfsafe.service.FileService;
 
 @RestController
 @RequestMapping("/api/file")
-public class PdfController {
+public class fileController {
 
   @Autowired
   private FileService fileService;
@@ -65,13 +65,16 @@ public class PdfController {
     try {
       DownloadFileResult result = fileService.downloadFile(fileName);
 
+      InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(result.getFileData()));
+      MediaType mediaType = result.getMediaType();
+
       HttpHeaders headers = new HttpHeaders();
-      headers.setContentType(result.getMediaType());
-      headers.setContentDispositionFormData("attachment", result.getOriginalFileName());
+      headers.setContentType(mediaType);
+      headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + result.getOriginalFileName() + "\"");
 
       return ResponseEntity.ok()
           .headers(headers)
-          .body(result.getFileData());
+          .body(resource);
     } catch (FileException e) {
       return ResponseEntity.unprocessableEntity()
           .body(new ApiError(HttpStatus.UNPROCESSABLE_ENTITY, "Unprocessable Entity", e.getLocalizedMessage()));
@@ -79,24 +82,23 @@ public class PdfController {
   }
 
   /**
-   * The function `viewFile` in a Java Spring application downloads a file and
-   * returns it as a response
-   * entity with the appropriate headers.
+   * The function `viewFile` retrieves a file from the file service, creates an
+   * input stream resource
+   * from the file data, sets the media type of the file, and returns a
+   * ResponseEntity with the file
+   * resource and headers.
    * 
-   * @param fileName The `fileName` parameter is a string that represents the name
+   * @param fileName The `fileName` parameter is a String that represents the name
    *                 of the file that needs
    *                 to be viewed.
-   * @return The method is returning a ResponseEntity object with an
-   *         InputStreamResource as the response
-   *         body.
+   * @return The method is returning a ResponseEntity<Object>.
    */
   @GetMapping("/view/{fileName}")
   public ResponseEntity<Object> viewFile(@PathVariable String fileName) throws Exception {
     try {
-      DownloadFileResult result = fileService.downloadFile(fileName);
+      DownloadFileResult result = fileService.viewFile(fileName);
 
       InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(result.getFileData()));
-
       MediaType mediaType = result.getMediaType();
 
       HttpHeaders headers = new HttpHeaders();
