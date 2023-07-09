@@ -1,4 +1,4 @@
-package br.com.pfsafe.model;
+package br.com.filesave.model;
 
 import java.sql.Blob;
 import java.util.UUID;

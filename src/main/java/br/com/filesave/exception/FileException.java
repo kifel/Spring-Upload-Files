@@ -1,4 +1,4 @@
-package br.com.pfsafe.exception;
+package br.com.filesave.exception;
 
 public class FileException extends RuntimeException {
 

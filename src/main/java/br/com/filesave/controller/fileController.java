@@ -1,4 +1,4 @@
-package br.com.pfsafe.controller;
+package br.com.filesave.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.pfsafe.DTOs.DownloadFileResult;
-import br.com.pfsafe.DTOs.UploadFileResponse;
-import br.com.pfsafe.exception.ApiError;
-import br.com.pfsafe.exception.FileException;
-import br.com.pfsafe.service.FileService;
+import br.com.filesave.DTOs.DownloadFileResult;
+import br.com.filesave.DTOs.UploadFileResponse;
+import br.com.filesave.exception.ApiError;
+import br.com.filesave.exception.FileException;
+import br.com.filesave.service.FileService;
 
 @RestController
 @RequestMapping("/api/file")

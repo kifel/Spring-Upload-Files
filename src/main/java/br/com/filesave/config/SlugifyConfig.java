@@ -1,4 +1,4 @@
-package br.com.pfsafe.config;
+package br.com.filesave.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package br.com.pfsafe.exception;
+package br.com.filesave.exception;
 
 import java.io.Serializable;
 import java.util.Arrays;

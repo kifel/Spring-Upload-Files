@@ -1,4 +1,4 @@
-package br.com.pfsafe.exception;
+package br.com.filesave.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;

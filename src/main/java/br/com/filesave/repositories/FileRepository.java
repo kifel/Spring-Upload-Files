@@ -1,11 +1,11 @@
-package br.com.pfsafe.repositories;
+package br.com.filesave.repositories;
 
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.pfsafe.model.File;
+import br.com.filesave.model.File;
 
 public interface FileRepository extends JpaRepository<File, UUID> {
   Optional<File> findByUniqueName(String name);

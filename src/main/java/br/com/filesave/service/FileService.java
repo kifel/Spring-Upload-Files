@@ -1,4 +1,4 @@
-package br.com.pfsafe.service;
+package br.com.filesave.service;
 
 import java.io.IOException;
 import java.sql.Blob;
@@ -14,12 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.slugify.Slugify;
 
-import br.com.pfsafe.DTOs.DownloadFileResult;
-import br.com.pfsafe.DTOs.UploadFileResponse;
-import br.com.pfsafe.exception.FileException;
-import br.com.pfsafe.model.File;
-import br.com.pfsafe.repositories.FileRepository;
-import br.com.pfsafe.utils.FileUtils;
+import br.com.filesave.DTOs.DownloadFileResult;
+import br.com.filesave.DTOs.UploadFileResponse;
+import br.com.filesave.exception.FileException;
+import br.com.filesave.model.File;
+import br.com.filesave.repositories.FileRepository;
+import br.com.filesave.utils.FileUtils;
 import jakarta.transaction.Transactional;
 
 @Service

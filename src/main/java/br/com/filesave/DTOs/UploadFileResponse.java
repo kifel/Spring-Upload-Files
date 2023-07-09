@@ -1,4 +1,4 @@
-package br.com.pfsafe.DTOs;
+package br.com.filesave.DTOs;
 
 import lombok.Data;
 
