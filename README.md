@@ -51,7 +51,7 @@ git clone https://github.com/kifel/Spring-Upload-Files.git
 
 4. Crie o banco de dados para utilziar no projeto.
 
-5. Configure o arquivo .env alterando a URL da API, conecção com o banco e senha do PostgreSQL, segue o padrao do .env
+5. Crie e configure o arquivo .env alterando a URL da API, conecção com o banco e senha do PostgreSQL, segue o padrao do .env
 ```m
 DB_URL=jdbc:postgresql://localhost:5432/nome_do_banco_de_dados_criado
 DB_USERNAME=usuario_do_banco
