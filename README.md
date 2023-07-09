@@ -68,7 +68,7 @@ API_URL=http://localhost:8080
 - POST
  - http://localhost:8080/api/file/upload
 
-O post é feito com Multipart, sendo enviado em file, exemplo:
+O post é feito com Multipart, exemplo:
 ![imagem de exemplo](https://cdn.discordapp.com/attachments/971904895043125258/1127653025905905708/image.png)
 
 ---
